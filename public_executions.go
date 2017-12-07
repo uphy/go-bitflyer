@@ -16,7 +16,7 @@ type Execution struct {
 }
 
 func (e Execution) String() string {
-	return fmt.Sprintf("Execution(date=%s, side=%s, price=%9.1f, size=%5.4f)", e.ExecDate, e.Side, e.Price, e.Size)
+	return fmt.Sprintf("Execution(date=%s, side=%s, price=%9.1f, size=%5.4f, id=%d)", e.ExecDate, e.Side, e.Price, e.Size, e.ID)
 }
 
 // Executions gets the executions.
