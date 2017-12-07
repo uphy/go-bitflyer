@@ -45,7 +45,7 @@ func main() {
 				return err
 			}
 			for _, execution := range executions {
-				fmt.Printf("%s %s %8.1f\n", execution.ExecDate, execution.Side, execution.Price)
+				fmt.Println(execution)
 			}
 			return nil
 		},

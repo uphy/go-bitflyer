@@ -1,6 +1,7 @@
 package bitflyer
 
 import (
+	"fmt"
 	"net/url"
 )
 
@@ -12,6 +13,10 @@ type Execution struct {
 	ExecDate                   string `json:"exec_date"`
 	BuyChildOrdeAcceptanceID   string `json:"buy_child_order_acceptance_id"`
 	SellChildOrderAcceptanceID string `json:"sell_child_order_acceptance_id"`
+}
+
+func (e Execution) String() string {
+	return fmt.Sprintf("Execution(date=%s, side=%s, price=%9.1f, size=%5.4f)", e.ExecDate, e.Side, e.Price, e.Size)
 }
 
 // Executions gets the executions.
