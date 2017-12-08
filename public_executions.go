@@ -11,7 +11,7 @@ type Execution struct {
 	Price                      float64
 	Size                       float64
 	ExecDate                   string `json:"exec_date"`
-	BuyChildOrdeAcceptanceID   string `json:"buy_child_order_acceptance_id"`
+	BuyChildOrderAcceptanceID  string `json:"buy_child_order_acceptance_id"`
 	SellChildOrderAcceptanceID string `json:"sell_child_order_acceptance_id"`
 }
 

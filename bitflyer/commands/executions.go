@@ -46,19 +46,5 @@ func init() {
 	executions.Flags().IntP("count", "c", 200, "the count of the page")
 	executions.Flags().Int64P("before", "b", -1, "get before this ID")
 	executions.Flags().Int64P("after", "a", -1, "get after this ID")
-	realtimeExecutions := &cobra.Command{
-		Use:   "realtime-executions",
-		Short: "Get executions.",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			executions := make(chan bitflyer.Execution, 10)
-			client.RealtimeExecutions(bitflyer.ProductCodeBTCJPY, executions)
-			for t := range executions {
-				fmt.Println(t)
-			}
-			return nil
-		},
-	}
-
 	root.AddCommand(executions)
-	root.AddCommand(realtimeExecutions)
 }

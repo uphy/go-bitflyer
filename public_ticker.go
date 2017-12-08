@@ -1,6 +1,7 @@
 package bitflyer
 
 import (
+	"fmt"
 	"net/url"
 )
 
@@ -21,6 +22,10 @@ type Ticker struct {
 	// 24 時間の取引量
 	Volume          float64 `json:"volume"`
 	VolumeByProduct float64 `json:"volume_by_product"`
+}
+
+func (t Ticker) String() string {
+	return fmt.Sprintf("Ticker(date=%s, id=%d, ltp=%8.1f, bestBid=%8.1f, bestAsk=%8.1f, bestBidSize=%5.4f, bestAskSize=%5.4f, totalBidDepth=%f, totalAskDepth=%f)", t.Timestamp, t.TickID, t.LTP, t.BestBid, t.BestAsk, t.BestBidSize, t.BestAskSize, t.TotalBidDepth, t.TotalAskDepth)
 }
 
 const (

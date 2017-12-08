@@ -10,21 +10,6 @@ import (
 )
 
 func init() {
-	ticker := &cobra.Command{
-		Use:   "ticker",
-		Short: "Get ticker.",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			productCode, _ := cmd.Flags().GetString("productcode")
-			ticker, err := client.Ticker(productCode)
-			if err != nil {
-				return err
-			}
-			fmt.Printf("Product Code: %s\n", ticker.ProductCode)
-			fmt.Printf("LTP         : %-8.3f\n", ticker.LTP)
-			return nil
-		},
-	}
-	ticker.Flags().String("productcode", bitflyer.ProductCodeBTCJPY, "the product code")
 	markets := &cobra.Command{
 		Use:   "markets",
 		Short: "Get markets.",
@@ -71,21 +56,8 @@ func init() {
 		},
 	}
 	boardState.Flags().String("productcode", bitflyer.ProductCodeBTCJPY, "the product code")
-	realtimeTicker := &cobra.Command{
-		Use:   "realtime-ticker",
-		Short: "Get ticker.",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			ticker := make(chan bitflyer.Ticker, 10)
-			client.RealtimeTicker(bitflyer.ProductCodeBTCJPY, ticker)
-			for t := range ticker {
-				fmt.Println(int(t.LTP))
-			}
-			return nil
-		},
-	}
-	root.AddCommand(ticker)
+
 	root.AddCommand(markets)
 	root.AddCommand(board)
 	root.AddCommand(boardState)
-	root.AddCommand(realtimeTicker)
 }
